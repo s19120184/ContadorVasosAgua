@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun WaterCounter(modifier: Modifier = Modifier){
 
-    var contador by remember {
+    var contador by rememberSaveable {
         mutableStateOf(0)
     }
     
@@ -56,15 +56,15 @@ fun WaterCounter(modifier: Modifier = Modifier){
 @Composable
 fun ContadorSinEstado(
     contador : Int ,
-    funcionIncrementar: () ->Unit, 
-    modifier: Modifier){
+    funcionIncrementar: () ->Unit,
+    modifier: Modifier=Modifier){
     
-    Column(modifier = Modifier.padding(16.dp)) {
+    Column(modifier = modifier.padding(16.dp)) {
         if(contador>0){
             Text(text = "has tomado $contador vasos")
         }
         Button(
-            onClick = { funcionIncrementar },
+            onClick = { funcionIncrementar() },
             Modifier.padding(8.dp),
             enabled= contador<10) {
             Text(text = "Agrega uno")
@@ -74,8 +74,11 @@ fun ContadorSinEstado(
 }
 @Composable
 fun ContadorConEstado(modifier: Modifier= Modifier){
-    var contadorIncremetar by rememberSaveable { mutableStateOf(0)}
-        ContadorSinEstado(contador =contadorIncremetar , funcionIncrementar = { contadorIncremetar++ }, modifier =modifier )
+    var contador by rememberSaveable {
+        mutableStateOf(0)
+    }
+
+    ContadorSinEstado(contador =contador, funcionIncrementar = { contador++ }, modifier =modifier )
     }
 
 

@@ -40,7 +40,7 @@ fun WellnessTaskItem(
         Checkbox(
             checked = checado,
             onCheckedChange =checadoCambia )
-        IconButton(onClick =  cerrar ){
+        IconButton(onClick =  { cerrar() } ){
             Icon(
                 Icons.Filled.Close ,
                 contentDescription="Close"
@@ -58,7 +58,7 @@ fun WellnessTaskItem(nombreTarea: String , cerrar: () -> Unit ,modifer: Modifier
         nombreTarea = nombreTarea,
         checado = estadoChecked,
         checadoCambia = { nuevoValor-> estadoChecked = nuevoValor},
-        cerrar = { cerrar},
+        cerrar = { cerrar() },
         modifer= modifer,
     )
 

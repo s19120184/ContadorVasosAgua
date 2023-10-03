@@ -11,11 +11,11 @@ import kotlinx.coroutines.withContext
 @Composable
 fun WellnessScreen(modifier: Modifier = Modifier){
 
+
     Column( modifier = modifier) {
         ContadorConEstado()
-
         val list = remember { getWellnessTasks().toMutableStateList() }
-        ListaDeTareas(lista = list , cerrarTarea = {tarea ->list.remove(tarea)})
+        ListaDeTareas(lista = list , cerrarTarea = { tarea ->list.remove(tarea)})
     }
 }
 private fun getWellnessTasks()= List(30){ i -> WellnessTask(i,"Tarea # $i")}

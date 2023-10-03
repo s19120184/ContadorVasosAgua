@@ -7,7 +7,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 
-//private fun getWellnessTask()= List(30){ i -> WellnessTask(i,"Tarea # $i")}
+private fun getWellnessTask()= List(30){ i -> WellnessTask(i,"Tarea # $i")}
 
 @Composable
 fun ListaDeTareas(
