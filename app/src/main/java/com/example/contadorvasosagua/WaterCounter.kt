@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -25,11 +26,11 @@ fun WaterCounter(modifier: Modifier = Modifier){
     ) {
 
         if (contador > 0) {
-            var mostrarTarea by remember { mutableStateOf(true) }
+            /*var mostrarTarea by rememberSaveable { mutableStateOf(true) }
 
             if (mostrarTarea) {
                 WellnessTaskItem(nombreTarea = "Camina mucho", cerrar = { mostrarTarea = false })
-            }
+            }*/
 
             Text(text = "you've had $contador glasses",)
         }
@@ -37,19 +38,44 @@ fun WaterCounter(modifier: Modifier = Modifier){
         Row(Modifier.padding(top = 8.dp)) {
             Button(
                 onClick = { contador++ },
-                Modifier.padding(top = 8.dp),
                 enabled = contador < 10 // boton abilitado mietras el contador sea menor a 10
-              )
+            )
             {
                 Text(text = "Agrega Uno")
             }
             Button(
-                onClick = {contador=0 },
+                onClick = { contador = 0 },
                 Modifier.padding(start = 8.dp)
             ) {
-                Text(text = "contador de agua Limdspiado")
+                Text(text = "Limpiar contador agua")
             }
 
         }
     }
 }
+@Composable
+fun ContadorSinEstado(
+    contador : Int ,
+    funcionIncrementar: () ->Unit, 
+    modifier: Modifier){
+    
+    Column(modifier = Modifier.padding(16.dp)) {
+        if(contador>0){
+            Text(text = "has tomado $contador vasos")
+        }
+        Button(
+            onClick = { funcionIncrementar },
+            Modifier.padding(8.dp),
+            enabled= contador<10) {
+            Text(text = "Agrega uno")
+        }
+    }
+    
+}
+@Composable
+fun ContadorConEstado(modifier: Modifier= Modifier){
+    var contadorIncremetar by rememberSaveable { mutableStateOf(0)}
+        ContadorSinEstado(contador =contadorIncremetar , funcionIncrementar = { contadorIncremetar++ }, modifier =modifier )
+    }
+
+
