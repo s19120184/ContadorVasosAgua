@@ -12,7 +12,8 @@ private fun getWellnessTask()= List(30){ i -> WellnessTask(i,"Tarea # $i")}
 @Composable
 fun ListaDeTareas(
     lista: List<WellnessTask> ,
-    cerrarTarea: (WellnessTask)-> Unit,
+    checkTarea: (WellnessTask ,Boolean)-> Unit,
+    onCloseTarea: (WellnessTask) -> Unit,
     modifier: Modifier= Modifier,
 
 ){
@@ -21,7 +22,11 @@ fun ListaDeTareas(
             items=lista,
             key={tarea-> tarea.id}
         ){tarea->
-            WellnessTaskItem(  nombreTarea = tarea.label , cerrar = { cerrarTarea(tarea) } )
+            WellnessTaskItem(
+                nombreTarea = tarea.label ,
+                checado = tarea.checado,
+                checadoCambia = { check -> checkTarea(tarea, check) },
+                cerrar = { onCloseTarea(tarea) } )
         }
     }
 }

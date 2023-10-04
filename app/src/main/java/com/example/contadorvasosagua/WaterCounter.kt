@@ -12,7 +12,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.contadorvasosagua.ui.theme.ContadorVasosAguaTheme
 
 @Composable
 fun WaterCounter(modifier: Modifier = Modifier){
@@ -81,4 +83,11 @@ fun ContadorConEstado(modifier: Modifier= Modifier){
     ContadorSinEstado(contador =contador, funcionIncrementar = { contador++ }, modifier =modifier )
     }
 
+@Preview(showBackground = true, widthDp = 320, heightDp = 320)
+@Composable
+fun ContadorvasosPreview() {
+    ContadorVasosAguaTheme {
+        ContadorSinEstado(contador = 0, funcionIncrementar = { /*TODO*/ })
+    }
+}
 

@@ -17,7 +17,9 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.contadorvasosagua.ui.theme.ContadorVasosAguaTheme
 
 @Composable
 fun WellnessTaskItem(
@@ -51,7 +53,10 @@ fun WellnessTaskItem(
 }
 
 @Composable
-fun WellnessTaskItem(nombreTarea: String , cerrar: () -> Unit ,modifer: Modifier= Modifier){
+fun WellnessTaskItem(
+    nombreTarea: String ,
+    cerrar: () -> Unit ,
+    modifer: Modifier= Modifier){
     var estadoChecked by rememberSaveable { mutableStateOf(false) }
 
     WellnessTaskItem(
@@ -63,4 +68,14 @@ fun WellnessTaskItem(nombreTarea: String , cerrar: () -> Unit ,modifer: Modifier
     )
 
 
+}
+
+
+
+@Preview(showBackground = true, widthDp = 320, heightDp = 320)
+@Composable
+fun ListaPreview() {
+    ContadorVasosAguaTheme {
+        WellnessTaskItem("tarea",false,{},{})
+    }
 }
